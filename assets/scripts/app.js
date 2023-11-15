@@ -22,21 +22,27 @@ function writeToLog(operationIdentifier, prevResult,
     logEntries.push(logEntry);
     console.log(logEntries);
 }
-
-function addNumbers() {
+function calculculateResult(calculationType) {
   const enteredNumber = getUserNumberInput();
   const initialResult = currentResult;
-  currentResult = currentResult + enteredNumber;
-  createAndWriteOutput('+', initialResult, enteredNumber);
-  writeToLog('ADD', initialResult, enteredNumber, currentResult);
+  let mathOperator;
+  if (calculationType === 'ADD') {
+    currentResult = currentResult + enteredNumber;
+    mathOperator = "+";
+  } else {
+    currentResult = currentResult - enteredNumber;
+    mathOperator = "-";
+  }
+  createAndWriteOutput(mathOperator, initialResult, enteredNumber);
+  writeToLog(calculationType, initialResult, enteredNumber, currentResult);
+}
+
+function addNumbers() {
+  calculculateResult('ADD');
 }
 
 function subtractNumbers() {
-  const enteredNumber = getUserNumberInput();
-  const initialResult = currentResult;
-  currentResult = currentResult - enteredNumber;
-  createAndWriteOutput('-', initialResult, enteredNumber);
-  writeToLog('SUBSTRACT', initialResult, enteredNumber, currentResult);
+  calculculateResult('SUBTRACT');
 }
 
 function multiplyNumbers() {
